@@ -1,0 +1,7 @@
+== NEXT PATCO
+
+The Port Authority Transit Corporation, which runs a train line between South Jersey and Philadelphia, is a workhorse, operating one of only four 24/7 train lines in the country. While their train line is an awesome resource for South Jersey, they're not that up to date in terms of user friendliness. Having only a paper/PDF schedule is one of those areas.
+
+The goal of this app is to let people interact with their schedule in a much more user-friendly way. When a rider picks a station, they're shown the next three trains to leave from that station toward Lindenwold and 15-16th & Locust, the two ends of the line.
+
+As of May 2014, the corporation doesn't official published GTFS data, but Kathryn Killebrew (@Banderkat on Twitter) has been awesome enough to turn their paper schedules into useable data.
