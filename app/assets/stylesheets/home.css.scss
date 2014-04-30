@@ -1,0 +1,115 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Custom fonts */
+@font-face {
+    font-family: 'SourceSansProRegular';
+    src: asset-url('SourceSansPro-Regular-webfont.eot', 'font');
+    src: asset-url('SourceSansPro-Regular-webfont.eot?#iefix', 'font') format('embedded-opentype'),
+         asset-url('SourceSansPro-Regular-webfont.woff', 'font') format('woff'),
+         asset-url('SourceSansPro-Regular-webfont.ttf', 'font') format('truetype'),
+         asset-url('SourceSansPro-Regular-webfont.svg#SourceSansProRegular', 'font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'SourceSansProItalic';
+    src: asset-url('/assets/SourceSansPro-It-webfont.eot', 'font');
+    src: asset-url('/assets/SourceSansPro-It-webfont.eot?#iefix', 'font') format('embedded-opentype'),
+         asset-url('/assets/SourceSansPro-It-webfont.woff', 'font') format('woff'),
+         asset-url('/assets/SourceSansPro-It-webfont.ttf', 'font') format('truetype'),
+         asset-url('/assets/SourceSansPro-It-webfont.svg#SourceSansProItalic', 'font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body {
+  font-family: 'SourceSansProRegular';
+  padding: 0 2em;
+
+  @media all and (min-width: 400px) {
+    width: 320px;
+    margin: 0 auto;
+  }
+}
+
+a {
+  color: #000;
+  border-bottom: 1px dashed #000;
+  text-decoration: none;
+
+  &:hover {
+    color: #c0c0c0;
+  }
+}
+header {
+  .site-logo {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+  }
+}
+
+/* Index page */
+div#stops {
+  img {
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+  }
+
+  a {
+    color: #000;
+    border: 0;
+    display: block;
+    margin: 1em 0;
+    text-decoration: none;
+  }
+}
+
+/* Station page */
+.station-name {
+  font-family: 'SourceSansProItalic';
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 22px;
+    width: 22px;
+    margin: 0 .25em 0 0;
+  }
+}
+
+div.time-listing {
+
+  .time {
+    color: #c0c0c0;
+    font-size: 1.5em;
+    margin: 0 .5em 0 0;
+    display: inline-block;
+
+    &:first-child {
+      color: #000;
+      display: block;
+      margin: 0 0 .25em;
+      font-size: 3em;
+    }
+
+    .departs-in {
+      display: block;
+      font-size: .4em;
+    }
+  }
+}
+
+div.footer {
+  font-size: .75em;
+  line-height: 1.25em;
+  text-align: center;
+  margin: 1.75em 0;
+}

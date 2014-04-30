@@ -1,0 +1,9 @@
+<div id="stops">
+  <% @stations.each do |s| %>
+    <a href="/<%= s.id %>/"><img src="/assets/pin.png" /> <%= s.stop_name %></a>
+  <% end %>
+</div>
+
+<div class="footer">
+This is a proof of concept project created by <a href="http://twitter.com/thegreengrass" target="_blank">@thegreengrass</a> using GTFS data from <a href="http://twitter.com/Banderkat" target="_blank">@Banderkat</a>.<br/> Neither is affiliated with PATCO.
+</div>
