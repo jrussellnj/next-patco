@@ -4,4 +4,4 @@ The Port Authority Transit Corporation, which runs a train line between South Je
 
 The goal of this app is to let people interact with their schedule in a much more user-friendly way. When a rider picks a station, they're shown the next three trains to leave from that station toward Lindenwold and 15-16th & Locust, the two ends of the line.
 
-As of May 2014, the corporation doesn't official published GTFS data, but Kathryn Killebrew (@Banderkat on Twitter) has been awesome enough to turn their paper schedules into useable data.
+As of May 2014, the corporation doesn't officially publish GTFS data, but Kathryn Killebrew (@Banderkat on Twitter) has been awesome enough to turn their paper schedules into useable data.
