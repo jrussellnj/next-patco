@@ -1,28 +1,70 @@
 <h2 class="station-name"><img src="/assets/pin.png" /><%= @theStation %></h2>
 
 <div class="time-listing">
-  <h3>NEXT TO<br />PHILADELPHIA<br />&larr;</h3>
+  <h3>NEXT TO<br />PHILADELPHIA</h3>
   <div>
-    <% @toPhiladelphia[0..2].each do |t| %>
-      <p class="time">
+    <!-- Next train -->
+    <p class="time next">
+      <%= Time.parse(@toPhiladelphia.first.departure_time).strftime('%l:%M%p') %><br />
+      <span class="departs-in"> Departs in <%= ((Time.parse(@toPhiladelphia.first.departure_time) - Time.now) / 60).floor %> mins</span>
+    </p>
+
+
+    <!-- Upcoming Trains -->
+    <ul class="upcoming-trains to-phila">
+    <% @toPhiladelphia[1..9].each do |t| %>
+      <li class="time">
         <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
         <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
-      </p>
+      </li>
     <% end %>
+    </ul>
+
+    <div class="navigation to-phila">
+      <a href="#" class="previous">&#8592; EARLIER</a> <a href="#" class="next">LATER &#8594;</a>
+    </div>
   </div>
 </div>
 
-<hr style="width: 75%; display: block; margin: 2em auto; border: 0; border-top: 1px solid #000;"/>
+<hr style="width: 75%; display: block; margin: 1.5em auto; border: 0; border-top: 1px solid #000;"/>
 
 <div class="time-listing">
-  <h3>NEXT TO<br />LINDENWOLD<br />&rarr;</h3>
+  <h3>NEXT TO<br />LINDENWOLD</h3>
   <div>
-  <% @toLindenwold[0..2].each do |t| %>
-    <p class="time">
-      <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
-      <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
+
+
+
+    <!-- Next train -->
+    <p class="time next">
+      <%= Time.parse(@toLindenwold.first.departure_time).strftime('%l:%M%p') %><br />
+      <span class="departs-in"> Departs in <%= ((Time.parse(@toLindenwold.first.departure_time) - Time.now) / 60).floor %> mins</span>
     </p>
-  <% end %>
+
+
+    <!-- Upcoming Trains -->
+    <ul class="upcoming-trains to-lindenwold">
+    <% @toLindenwold[1..9].each do |t| %>
+      <li class="time">
+        <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
+        <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
+      </li>
+    <% end %>
+    </ul>
+
+    <div class="navigation to-lindenwold">
+      <a href="#" class="previous">&#8592; EARLIER</a> <a href="#" class="next">LATER &#8594;</a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </div>
 

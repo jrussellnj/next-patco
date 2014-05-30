@@ -86,6 +86,8 @@ div#stops {
 }
 
 div.time-listing {
+  overflow:hidden;
+  width: 18em;
 
   .time {
     color: #c0c0c0;
@@ -93,7 +95,7 @@ div.time-listing {
     margin: 0 .5em 0 0;
     display: inline-block;
 
-    &:first-child {
+    &.next {
       color: #000;
       display: block;
       margin: 0 0 .25em;
@@ -103,6 +105,25 @@ div.time-listing {
     .departs-in {
       display: block;
       font-size: .4em;
+    }
+  }
+
+  ul.upcoming-trains {
+    padding: 0;
+    margin: 0;
+
+    li {
+      width: 3.5em;
+    }
+  }
+
+  .navigation {
+    margin: .5em 0 0;
+    text-align: center;
+
+
+    a:first-child {
+      margin: 0 1em 0 0;
     }
   }
 }
