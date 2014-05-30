@@ -22,10 +22,15 @@ class HomeController < ApplicationController
     end
 
     # Get the times for a particular stop
+    currentTime = Time.now.strftime("%H:%M:%S")
+
+    # Override, if needed for testing
+    # currentTime = "08:30:00"
+
     @times = 
       Gtfs_stop_times
         .select('gtfs_stop_times.*, gtfs_trips.direction_id')
-        .where('stop_id = ? and departure_time > ?', params[:station_id], Time.now.strftime("%H:%M:%S")).order('departure_time')
+        .where('stop_id = ? and departure_time > ?', params[:station_id], currentTime).order('departure_time')
         .joins('LEFT OUTER JOIN gtfs_trips ON gtfs_stop_times.trip_id = gtfs_trips.trip_id').where('gtfs_trips.service_id = ?', todaysServiceId)
 
     @toPhiladelphia = []
