@@ -9,7 +9,7 @@ function hookUpCarousel() {
     },
     circular: false,
     infinite: false,
-    items: 3,
+    items: 2,
     next: {
       button: $('.to-phila .next')
     },
@@ -18,8 +18,7 @@ function hookUpCarousel() {
     },
     scroll: {
       items: 1
-    },
-    width: "100%"
+    }
   });
 
   $('.upcoming-trains.to-lindenwold').carouFredSel({
@@ -28,7 +27,7 @@ function hookUpCarousel() {
     },
     circular: false,
     infinite: false,
-    items: 3,
+    items: 2,
     next: {
       button: $('.to-lindenwold .next')
     },
@@ -36,8 +35,7 @@ function hookUpCarousel() {
       button: $('.to-lindenwold .previous')
     },
     scroll: {
-      items: 1
-    },
-    width: "100%"
+      items: 2
+    }
   });
 }
