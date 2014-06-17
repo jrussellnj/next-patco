@@ -35,7 +35,7 @@ function hookUpCarousel() {
       button: $('.to-lindenwold .previous')
     },
     scroll: {
-      items: 2
+      items: 1
     }
   });
 }
