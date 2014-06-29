@@ -12,7 +12,7 @@
 
     <!-- Upcoming Trains -->
     <ul class="upcoming-trains to-phila">
-    <% @toPhiladelphia[1..9].each do |t| %>
+    <% @toPhiladelphia[1..2].each do |t| %>
       <li class="time">
         <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
         <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
@@ -43,7 +43,7 @@
 
     <!-- Upcoming Trains -->
     <ul class="upcoming-trains to-lindenwold">
-    <% @toLindenwold[1..9].each do |t| %>
+    <% @toLindenwold[1..2].each do |t| %>
       <li class="time">
         <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
         <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>

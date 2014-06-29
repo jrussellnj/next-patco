@@ -44,6 +44,10 @@ class HomeController < ApplicationController
       else
         @toLindenwold.push(s)
       end
+
+      #@toPhiladelphia.slice!(0, @toPhiladelphia.length < 9 ?  @toPhiladelphia.length : 9)
+      #@toLindenwold.slice!(0, @toLindenwold.length < 9 ?  @toLindenwold.length : 9)
+
     end
   end
 
