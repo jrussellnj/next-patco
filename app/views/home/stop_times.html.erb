@@ -20,7 +20,7 @@
 
     <!-- Upcoming Trains -->
     <ul class="upcoming-trains to-phila">
-    <% @toPhiladelphia.each do |t| %>
+    <% @toPhiladelphia.slice(1, 100).each do |t| %>
       <li class="time">
         <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
         <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
@@ -70,7 +70,7 @@
 
     <!-- Upcoming Trains -->
     <ul class="upcoming-trains to-lindenwold">
-    <% @toLindenwold.each do |t| %>
+    <% @toLindenwold.slice(1, 100).each do |t| %>
       <% if !t.nil? %>
       <li class="time">
         <%
