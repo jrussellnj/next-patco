@@ -1,6 +1,6 @@
 <div id="stops">
   <% @stations.each do |s| %>
-    <a href="/<%= s.id %>/"><img src="/assets/pin.png" /> <%= s.stop_name %></a>
+    <a href="/<%= s.slug %>/"><img src="/assets/pin.png" /> <%= s.stop_name %></a>
   <% end %>
 </div>
 

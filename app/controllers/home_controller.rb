@@ -36,8 +36,16 @@ class HomeController < ApplicationController
   private
 
   def getStopTimes(dateTime)
+    if params[:station].is_number?
+      logger.debug params
+      s = Gtfs_stops.find_by_stop_id(params[:station])
+    else
+      s = Gtfs_stops.find_by_slug(params[:station])
+    end
+
     # Get the name of the station with the provided id
-    @theStation = Gtfs_stops.find_by_stop_id(params[:station_id]).stop_name
+    Rails.logger.debug s
+    @theStation = s.stop_name
 
     # Figure out which service id to use based on what day it is
     case dateTime.strftime('%A').downcase
@@ -53,7 +61,13 @@ class HomeController < ApplicationController
 
     Gtfs_stop_times
       .select('gtfs_stop_times.*, gtfs_trips.direction_id')
-      .where('stop_id = ? and departure_time > ?', params[:station_id], dateTime.strftime('%H:%M:%S')).order('departure_time')
+      .where('stop_id = ? and departure_time > ?', s.id, dateTime.strftime('%H:%M:%S')).order('departure_time')
       .joins('LEFT OUTER JOIN gtfs_trips ON gtfs_stop_times.trip_id = gtfs_trips.trip_id').where('gtfs_trips.service_id = ?', todaysServiceId)
+  end
+end
+
+class String
+  def is_number?
+    true if Float(self) rescue false
   end
 end

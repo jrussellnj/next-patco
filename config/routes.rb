@@ -3,5 +3,5 @@ Site::Application.routes.draw do
   # first created -> highest priority.
 
   root :to => 'home#index'
-  match '/:station_id/' => 'home#stop_times', as: :station, via: [:get]
+  match '/:station/' => 'home#stop_times', as: :station, via: [:get]
 end
