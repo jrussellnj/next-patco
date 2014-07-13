@@ -37,14 +37,12 @@ class HomeController < ApplicationController
 
   def getStopTimes(dateTime)
     if params[:station].is_number?
-      logger.debug params
       s = Gtfs_stops.find_by_stop_id(params[:station])
     else
       s = Gtfs_stops.find_by_slug(params[:station])
     end
 
     # Get the name of the station with the provided id
-    Rails.logger.debug s
     @theStation = s.stop_name
 
     # Figure out which service id to use based on what day it is
