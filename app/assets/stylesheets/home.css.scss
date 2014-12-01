@@ -8,12 +8,11 @@ $desktop: 401px;
 
 body {
   font-family: 'SourceSansProRegular';
-  padding: 0 2em;
   text-align: center;
 
   @media all and (max-width: $mobile) {
-    width: 320px;
     margin: 0 auto;
+    width: 320px;
   }
 }
 
@@ -37,11 +36,12 @@ header {
 }
 
 /* Index page */
-div#stops {
+#stops {
   text-align: left;
+  margin: 0 auto;
+  width: 65%;
 
   @media all and (min-width: $desktop) {
-    margin: 0 auto;
     width: 10em;
   }
 
