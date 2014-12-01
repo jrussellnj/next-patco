@@ -1,0 +1,23 @@
+/* Custom fonts */
+@font-face {
+    font-family: 'SourceSansProRegular';
+    src: asset-url('SourceSansPro-Regular-webfont.eot', 'font');
+    src: asset-url('SourceSansPro-Regular-webfont.eot?#iefix', 'font') format('embedded-opentype'),
+         asset-url('SourceSansPro-Regular-webfont.woff', 'font') format('woff'),
+         asset-url('SourceSansPro-Regular-webfont.ttf', 'font') format('truetype'),
+         asset-url('SourceSansPro-Regular-webfont.svg#SourceSansProRegular', 'font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceSansProItalic';
+    src: asset-url('/assets/SourceSansPro-It-webfont.eot', 'font');
+    src: asset-url('/assets/SourceSansPro-It-webfont.eot?#iefix', 'font') format('embedded-opentype'),
+         asset-url('/assets/SourceSansPro-It-webfont.woff', 'font') format('woff'),
+         asset-url('/assets/SourceSansPro-It-webfont.ttf', 'font') format('truetype'),
+         asset-url('/assets/SourceSansPro-It-webfont.svg#SourceSansProItalic', 'font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
