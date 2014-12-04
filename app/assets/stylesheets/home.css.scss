@@ -2,39 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* Custom fonts */
-@font-face {
-    font-family: 'SourceSansProRegular';
-    src: asset-url('SourceSansPro-Regular-webfont.eot', 'font');
-    src: asset-url('SourceSansPro-Regular-webfont.eot?#iefix', 'font') format('embedded-opentype'),
-         asset-url('SourceSansPro-Regular-webfont.woff', 'font') format('woff'),
-         asset-url('SourceSansPro-Regular-webfont.ttf', 'font') format('truetype'),
-         asset-url('SourceSansPro-Regular-webfont.svg#SourceSansProRegular', 'font') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'SourceSansProItalic';
-    src: asset-url('/assets/SourceSansPro-It-webfont.eot', 'font');
-    src: asset-url('/assets/SourceSansPro-It-webfont.eot?#iefix', 'font') format('embedded-opentype'),
-         asset-url('/assets/SourceSansPro-It-webfont.woff', 'font') format('woff'),
-         asset-url('/assets/SourceSansPro-It-webfont.ttf', 'font') format('truetype'),
-         asset-url('/assets/SourceSansPro-It-webfont.svg#SourceSansProItalic', 'font') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
+// Page break sizes
+$mobile: 400px;
+$desktop: 401px;
 
 body {
   font-family: 'SourceSansProRegular';
-  padding: 0 2em;
+  text-align: center;
 
-  @media all and (min-width: 400px) {
-    width: 320px;
+  @media all and (max-width: $mobile) {
     margin: 0 auto;
+    width: 320px;
   }
 }
 
@@ -48,6 +26,8 @@ a {
   }
 }
 header {
+  margin: 0 auto 2em;
+
   .site-logo {
     display: block;
     margin: 0 auto;
@@ -56,7 +36,15 @@ header {
 }
 
 /* Index page */
-div#stops {
+#stops {
+  text-align: left;
+  margin: 0 auto;
+  width: 65%;
+
+  @media all and (min-width: $desktop) {
+    width: 10em;
+  }
+
   img {
     height: 16px;
     vertical-align: middle;
@@ -86,6 +74,7 @@ div#stops {
 }
 
 div.time-listing {
+  display: inline-block;
   overflow:hidden;
   width: 18em;
 
@@ -118,10 +107,10 @@ div.time-listing {
   }
 
   .navigation {
-    margin: .5em 0 0;
-    text-align: center;
-    width: 60%;
-
+    @media all and (max-width: $mobile) {
+      margin: .5em 0 0;
+      text-align: center;
+    }
 
     a:first-child {
       margin: 0 1em 0 0;
@@ -129,9 +118,29 @@ div.time-listing {
   }
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid #000;
+  display: block;
+  margin: 1.5em auto;
+  width: 75%;
+
+  @media all and (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.caroufredsel_wrapper {
+  margin: 0 auto !important;
+}
+
 div.footer {
   font-size: .75em;
   line-height: 1.25em;
   text-align: center;
-  margin: 1.75em 0;
+  margin: 1.75em auto;
+
+  @media all and (min-width: $desktop) {
+    width: 42em;
+  }
 }
