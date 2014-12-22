@@ -1,12 +1,14 @@
 development:
   adapter: sqlite3
-  database: db/gtfs-development.db
+  # database: db/gtfs-development.db
+  database: db/gtfs-christmas.db
   pool: 5
   timeout: 5000
 
 production:
   adapter: sqlite3
-  database: db/gtfs.db
+  # database: db/gtfs.db
+  database: db/gtfs-christmas.db
   pool: 5
   timeout: 5000
 
