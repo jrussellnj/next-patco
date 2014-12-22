@@ -47,8 +47,12 @@ class HomeController < ApplicationController
 
     # Figure out which service id to use based on what day it is
     case dateTime.strftime('%A').downcase
-      when "monday", "tuesday", "wednesday"
+      when "monday"
         todaysServiceId = Gtfs_calendar.where("monday = ?", 1).first.service_id
+      when "tuesday"
+        todaysServiceId = Gtfs_calendar.where("tuesday = ?", 1).first.service_id
+      when "wednesday"
+        todaysServiceId = Gtfs_calendar.where("wednesday = ?", 1).first.service_id
       when "thursday"
         todaysServiceId = Gtfs_calendar.where("thursday = ?", 1).first.service_id
       when "friday"
