@@ -45,22 +45,29 @@ class HomeController < ApplicationController
     # Get the name of the station with the provided id
     @theStation = s.stop_name
 
-    # Figure out which service id to use based on what day it is
-    case dateTime.strftime('%A').downcase
-      when "monday"
-        todaysServiceId = Gtfs_calendar.where("monday = ?", 1).first.service_id
-      when "tuesday"
-        todaysServiceId = Gtfs_calendar.where("tuesday = ?", 1).first.service_id
-      when "wednesday"
-        todaysServiceId = Gtfs_calendar.where("wednesday = ?", 1).first.service_id
-      when "thursday"
-        todaysServiceId = Gtfs_calendar.where("thursday = ?", 1).first.service_id
-      when "friday"
-        todaysServiceId = Gtfs_calendar.where("friday = ?", 1).first.service_id
-      when "saturday"
-        todaysServiceId = Gtfs_calendar.where("saturday = ?", 1).first.service_id
-      when "sunday"
-        todaysServiceId = Gtfs_calendar.where("sunday = ?", 1).first.service_id
+    # Figure out which service id to use based on what day it is, and if it's a holiday or not
+    holidayDay = Gtfs_calendar_dates
+      .where('date = ? and exception_type = 1', dateTime.strftime('%Y%m%d'))
+
+    if (holidayDay.count > 0)
+      todaysServiceId = holidayDay.first.service_id
+    else 
+      case dateTime.strftime('%A').downcase
+        when "monday"
+          todaysServiceId = Gtfs_calendar.where("monday = ?", 1).first.service_id
+        when "tuesday"
+          todaysServiceId = Gtfs_calendar.where("tuesday = ?", 1).first.service_id
+        when "wednesday"
+          todaysServiceId = Gtfs_calendar.where("wednesday = ?", 1).first.service_id
+        when "thursday"
+          todaysServiceId = Gtfs_calendar.where("thursday = ?", 1).first.service_id
+        when "friday"
+          todaysServiceId = Gtfs_calendar.where("friday = ?", 1).first.service_id
+        when "saturday"
+          todaysServiceId = Gtfs_calendar.where("saturday = ?", 1).first.service_id
+        when "sunday"
+          todaysServiceId = Gtfs_calendar.where("sunday = ?", 1).first.service_id
+      end
     end
 
     Gtfs_stop_times
