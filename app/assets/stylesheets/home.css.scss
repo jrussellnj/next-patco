@@ -57,6 +57,10 @@ header {
     display: block;
     margin: 1em 0;
     text-decoration: none;
+
+    @media all and (max-width: $mobile) {
+      padding: 0.5em;
+    }
   }
 }
 
