@@ -9,7 +9,8 @@ class HomeController < ApplicationController
     @toPhiladelphia = []
     @toLindenwold = []
 
-    @times = getStopTimes(DateTime.now)
+    @dateToUse = DateTime.now
+    @times = getStopTimes(@dateToUse)
 
     @times.each do |s| 
       # Note: direction_id of 1 is to LINDENWOLD and
@@ -69,6 +70,8 @@ class HomeController < ApplicationController
           todaysServiceId = Gtfs_calendar.where("sunday = ?", 1).first.service_id
       end
     end
+
+    @debug_serviceId = todaysServiceId
 
     Gtfs_stop_times
       .select('gtfs_stop_times.*, gtfs_trips.direction_id')
