@@ -6,118 +6,14 @@
 
 <div class="time-listing">
   <h3>NEXT TO<br />PHILADELPHIA</h3>
-  <div>
-
-    <% 
-    if @toPhiladelphia.length < 1
-      %>
-      <em>Next train departs after 12:00 AM</em>
-      <% else %>
-
-
-    <!-- Next train -->
-    <p class="time next">
-      <%= Time.parse(@toPhiladelphia.first.departure_time).strftime('%l:%M%p') %><br />
-      <span class="departs-in"> Departs in <%= ((Time.parse(@toPhiladelphia.first.departure_time) - Time.now) / 60).floor %> mins</span>
-    </p>
-
-
-    <!-- Upcoming Trains -->
-    <ul class="upcoming-trains to-phila">
-    <% @toPhiladelphia.slice(1, 100).each do |t| %>
-      <li class="time">
-        <%= Time.parse(t.departure_time).strftime('%l:%M%p') %><br />
-        <span class="departs-in"> Departs in <%= ((Time.parse(t.departure_time) - Time.now) / 60).floor %> mins</span>
-      </li>
-    <% end %>
-    </ul>
-
-    <div class="navigation to-phila">
-      <a href="#" class="previous">&#8592; EARLIER</a> <a href="#" class="next">LATER &#8594;</a>
-    </div>
-  </div>
-  <% end %>
+  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
 </div>
 
 <hr />
 
 <div class="time-listing">
   <h3>NEXT TO<br />LINDENWOLD</h3>
-  <div>
-
-
-  <% if @toLindenwold.length < 1 %>
-    <em>Next train departs after 12:00 AM</em>
-  <% else %>
-
-
-
-    <!-- Next train -->
-    <p class="time next">
-    <%
-          if (@toLindenwold.first.departure_time.slice(0, 2) == "24")
-            tomorrow = true
-            d  = "00:#{@toLindenwold.first.departure_time.slice(3, 5)}"
-          else 
-            d= @toLindenwold.first.departure_time
-          end
-      %>
-        <% if tomorrow == true %>
-          <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
-        <% else %>
-      <%= Time.parse(d).strftime('%l:%M%p') %>
-        <% end %>
-      <br />
-      <span class="departs-in"> Departs in <%= ((Time.parse(d) - Time.now) / 60).floor %> mins</span>
-    </p>
-
-
-    <!-- Upcoming Trains -->
-    <ul class="upcoming-trains to-lindenwold">
-    <% @toLindenwold.slice(1, 100).each do |t| %>
-      <% if !t.nil? %>
-      <li class="time">
-        <%
-          if (t.departure_time.slice(0, 2) == "24")
-            tomorrow = true
-            d  = "00:#{t.departure_time.slice(3, 5)}"
-          else 
-            d= t.departure_time
-          end
-
-
-        %>
-        <%= Time.parse(d).strftime('%l:%M%p') %><br />
-        <span class="departs-in"> Departs in 
-        <% if tomorrow == true %>
-          <%= ((Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}") - Time.now) / 60).floor %> 
-        <% else %>
-          <%= ((Time.parse(d) - Time.now) / 60).floor %> 
-        <% end %>
-        
-        mins</span>
-      </li>
-      <% end %>
-    <% end %>
-    </ul>
-
-    <div class="navigation to-lindenwold">
-      <a href="#" class="previous">&#8592; EARLIER</a> <a href="#" class="next">LATER &#8594;</a>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  <% end %>
+  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
 </div>
 
 <br /> <p> <a href="/" class="back-link">Back to stations</a> </p>
