@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Next PATCO <%= @theStation.present? ? "&mdash; #{@theStation}".html_safe : '' %></title>
+  <title>Next PATCO <%= @theStation.present? ? "&mdash; #{@theStation.stop_name}".html_safe : '' %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link id="favicon" rel="shortcut icon" href="/train-circle.png" type="image/png" />
   <link rel="apple-touch-icon" href="/train-circle.png">
@@ -31,7 +31,7 @@
   <%= yield %>
 
 <div class="footer">
-Schedule data last updated on February 16<sup>th</sup> 2015.<br /><br />
+Schedule data last updated on February 27<sup>th</sup> 2015.<br /><br />
 This is a proof of concept project created by <a href="http://twitter.com/thegreengrass" target="_blank">@thegreengrass</a> with massive help from <a href="http://twitter.com/banderkat" target="_blank">@banderkat</a> and <a href="http://twitter.com/dstys" target="_blank">@dstys</a>, none of whom are in any way affiliated with PATCO or DRPA.
 </div>
 

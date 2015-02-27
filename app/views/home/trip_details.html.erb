@@ -1,0 +1,7 @@
+Trip details:
+
+<% @tripStopTimes.each do |time| %>
+  <p style="<%= @thisStation.stop_id == time.stop_id ? 'font-weight: bold;' : '' %> <%= @timeAtThisStop > time.departure_time ? 'color: #c0c0c0; font-style: italic;' : '' %> ">
+    <%= time.stop_name %>: <%= Time.parse(time.departure_time).strftime('%l:%M%p') %>
+  </p>
+<% end %>

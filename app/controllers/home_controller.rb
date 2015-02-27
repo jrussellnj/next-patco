@@ -25,14 +25,19 @@ class HomeController < ApplicationController
 
   # Get the details of a specific trip, based around a specific stop
   def trip_details
+    @thisStation =
+      Gtfs_stops.find_by_slug(params[:station])
+
     @tripStopTimes =
       Gtfs_stop_times
         .select('gtfs_stop_times.*, gtfs_stops.stop_name')
         .joins("inner join gtfs_stops on gtfs_stop_times.stop_id = gtfs_stops.stop_id")
-        .where('gtfs_stop_times.trip_id = ?', params[:trip_id])
+        .where('gtfs_stop_times.trip_id = ?', params[:trip])
         .order('departure_time asc')
-  end
 
+    @timeAtThisStop =
+      @tripStopTimes.where('gtfs_stop_times.stop_id = ?', @thisStation.stop_id).first.departure_time
+  end
   
   private
 
@@ -44,7 +49,7 @@ class HomeController < ApplicationController
     end
 
     # Get the name of the station with the provided id
-    @theStation = s.stop_name
+    @theStation = s
 
     # Figure out which service id to use based on what day it is, and if it's a holiday or not
     holidayDay = Gtfs_calendar_dates
