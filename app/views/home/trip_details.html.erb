@@ -5,3 +5,5 @@ Trip details:
     <%= time.stop_name %>: <%= Time.parse(time.departure_time).strftime('%l:%M%p') %>
   </p>
 <% end %>
+
+<br /><p> <a href="/<%= @thisStation.slug %>" class="back-link">Back to schedule</a> </p>

@@ -94,6 +94,10 @@ div.time-listing {
       display: block;
       margin: 0 0 .25em;
       font-size: 3em;
+
+      a {
+        border: 0;
+      }
     }
 
     .departs-in {
@@ -107,7 +111,12 @@ div.time-listing {
     margin: 0;
 
     li {
-      width: 3.5em;
+      width: 4.5em;
+      vertical-align: top;
+
+      a {
+        border: 0;
+      }
     }
   }
 
