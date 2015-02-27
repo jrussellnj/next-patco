@@ -80,6 +80,7 @@ header {
 div.time-listing {
   display: inline-block;
   overflow:hidden;
+  vertical-align: top;
   width: 18em;
 
   .time {

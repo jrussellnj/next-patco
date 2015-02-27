@@ -13,13 +13,13 @@
     end
   %>
 
-  <a href="/<%= @theStation.slug %>/trip/<%= trains.first.trip_id %>">
+  <!--<a href="/<%= @theStation.slug %>/trip/<%= trains.first.trip_id %>">-->
     <% if tomorrow == true %>
       <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
     <% else %>
       <%= Time.parse(d).strftime('%l:%M%p') %>
     <% end %>
-  </a>
+  <!--</a>-->
 
   <br /><span class="departs-in"> Departs in <%= ((Time.parse(d) - Time.now) / 60).floor %> mins</span>
 </p>
@@ -39,9 +39,9 @@
           end
         %>
 
-        <a href="/<%= @theStation.slug %>/trip/<%= t.trip_id %>">
+        <!--<a href="/<%= @theStation.slug %>/trip/<%= t.trip_id %>">-->
           <%= Time.parse(d).strftime('%l:%M%p') %>
-        </a>
+        <!--</a>-->
 
         <br />
 
