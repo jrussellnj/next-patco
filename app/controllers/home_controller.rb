@@ -4,6 +4,10 @@ class HomeController < ApplicationController
     @stations = Gtfs_stops.all
   end
 
+  def stops
+    @stations = Gtfs_stops.all
+  end
+
   # Show the stop times, both inbound and outbound, for a provided stop 
   def stop_times
     @toPhiladelphia = []

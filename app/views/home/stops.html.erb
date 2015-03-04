@@ -1,0 +1,5 @@
+<div id="stops" class="choose-direction">
+  <% @stations.each do |s| %>
+    <a href="/<%= s.slug %>/"><img src="/assets/pin.png" /> <%= s.stop_name %></a>
+  <% end %>
+</div>

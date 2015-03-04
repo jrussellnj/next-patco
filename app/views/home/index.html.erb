@@ -1,5 +1,11 @@
-<div id="stops">
-  <% @stations.each do |s| %>
-    <a href="/<%= s.slug %>/"><img src="/assets/pin.png" /> <%= s.stop_name %></a>
-  <% end %>
+<div class="choose-direction">
+  <a href="/westbound">
+    <span class="direction">WESTBOUND</span> to 15-16th &amp; Locust
+  </a>
+  
+  <br />
+
+  <a href="/eastbound">
+    <span class="direction">EASTBOUND</span> to Lindenwold
+  </a>
 </div>

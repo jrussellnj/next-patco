@@ -7,6 +7,7 @@ $mobile: 400px;
 $desktop: 401px;
 
 body {
+  background: url('http://webdesignledger.com/wp-content/uploads/2012/09/patterns08.jpg');
   font-family: 'SourceSansProRegular';
   text-align: center;
 
@@ -26,12 +27,18 @@ a {
   }
 }
 header {
-  margin: 0 auto 2em;
+  margin: 1em auto;
 
-  .site-logo {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
+  a {
+    border: 0;
+    font-size: 24px;
+
+    .site-logo {
+      display: inline-block;
+      margin: 0 auto;
+      vertical-align: middle;
+      width: 32px;
+    }
   }
 }
 
@@ -52,14 +59,36 @@ header {
   }
 
   a {
-    color: #000;
+    // color: #000;
     border: 0;
     display: block;
     margin: 1em 0;
     text-decoration: none;
+    width: 100%;
 
     @media all and (max-width: $mobile) {
-      padding: 0.5em;
+      // padding: 0.5em;
+    }
+  }
+}
+
+/* New direction buttons */
+.choose-direction {
+  a {
+    text-decoration: none;
+    border: 0;
+    color: #fff;
+    display: block;
+    background: #363636;
+    padding: .8em .35em;
+    text-align: left;
+
+    .direction {
+      border-radius: 5px;
+      background: #c0c0c0;
+      color: #fff;
+      padding: .5em;
+      margin: 0 1em 0 0;
     }
   }
 }
