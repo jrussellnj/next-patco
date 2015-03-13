@@ -2,18 +2,52 @@
   <em>Next train departs after 12:00 AM</em>
 <% else %>
 
+<ul class="upcoming-trains <%= upcomingClass %>">
+  <% trains.each do |t| %>
+  <li class="time">
+    <p class="time next">
+      <%
+        if (t[:time].departure_time.slice(0, 2) == "24")
+          tomorrow = true
+          d = "00:#{t[:time].departure_time.slice(3, 5)}"
+        else 
+          d = t[:time].departure_time
+        end
+      %>
+
+      <% if tomorrow == true %>
+        <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
+      <% else %>
+        <%= Time.parse(d).strftime('%l:%M%p') %>
+      <% end %>
+
+      <br /><span class="departs-in"> Departs in <%= ((Time.parse(d) - Time.now) / 60).floor %> mins</span>
+
+      <div class="trip-details">
+        <% t[:trip].each do |stop| %>
+          <% if stop.departure_time > t[:time].departure_time %>
+            <br /><%= "#{stop.stop_name}: #{Time.parse(stop.departure_time).strftime('%l:%M%p')}" %>
+          <% end %>
+        <% end %>
+      </div>
+    </p>
+  </li>
+  <% end %>
+</ul>
+
 <!-- Next train -->
+<!--
 <p class="time next">
   <%
-    if (trains.first.departure_time.slice(0, 2) == "24")
+    if (trains.first[:time].departure_time.slice(0, 2) == "24")
       tomorrow = true
-      d  = "00:#{trains.first.departure_time.slice(3, 5)}"
+      d = "00:#{trains.first[:time].departure_time.slice(3, 5)}"
     else 
-      d= trains.first.departure_time
+      d = trains.first[:time].departure_time
     end
   %>
 
-  <a href="/<%= @theStation.slug %>/trip/<%= trains.first.trip_id %>">
+  <a href="/<%= @theStation.slug %>/trip/<%= trains.first[:time].trip_id %>">
     <% if tomorrow == true %>
       <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
     <% else %>
@@ -22,26 +56,33 @@
   </a>
 
   <br /><span class="departs-in"> Departs in <%= ((Time.parse(d) - Time.now) / 60).floor %> mins</span>
-</p>
 
+  <div class="trip-details">
+    <% trains.first[:trip].each do |stop| %>
+      <% if stop.departure_time > trains.first[:time].departure_time %>
+        <br /><%= "#{stop.stop_name}: #{Time.parse(stop.departure_time).strftime('%l:%M%p')}" %>
+      <% end %>
+    <% end %>
+  </div>
+</p>
+-->
 
 <!-- Upcoming Trains -->
+<!--
 <ul class="upcoming-trains <%= upcomingClass %>">
   <% trains.slice(1, 100).each do |t| %>
     <% if !t.nil? %>
       <li class="time">
         <%
-          if (t.departure_time.slice(0, 2) == "24")
+          if (t[:time].departure_time.slice(0, 2) == "24")
             tomorrow = true
-            d  = "00:#{t.departure_time.slice(3, 5)}"
+            d = "00:#{t[:time].departure_time.slice(3, 5)}"
           else 
-            d= t.departure_time
+            d = t[:time].departure_time
           end
         %>
 
-        <a href="/<%= @theStation.slug %>/trip/<%= t.trip_id %>">
-          <%= Time.parse(d).strftime('%l:%M%p') %>
-        </a>
+        <%= Time.parse(d).strftime('%l:%M%p') %>
 
         <br />
 
@@ -56,6 +97,7 @@
     <% end %>
   <% end %>
 </ul>
+-->
 
 <div class="navigation <%= upcomingClass %>">
   <a href="#" class="previous">&#8592; EARLIER</a> <a href="#" class="next">LATER &#8594;</a>

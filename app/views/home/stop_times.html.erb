@@ -4,16 +4,20 @@
 
 <h2 class="station-name"><img src="/assets/pin.png" /><%= @theStation.stop_name %></h2>
 
+<% if @direction.nil? or @direction == "westbound" %>
 <div class="time-listing">
   <h3>NEXT TO<br />PHILADELPHIA</h3>
   <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
 </div>
+<% end %>
 
 <hr />
 
+<% if @direction.nil? or @direction == "eastbound" %>
 <div class="time-listing">
   <h3>NEXT TO<br />LINDENWOLD</h3>
   <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
 </div>
+<% end %>
 
 <br /> <p> <a href="/" class="back-link">Back to stations</a> </p>

@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
 
   def stops
+    @direction = params[:direction]
     @stations = Gtfs_stops.all
   end
 
@@ -12,6 +13,7 @@ class HomeController < ApplicationController
   def stop_times
     @toPhiladelphia = []
     @toLindenwold = []
+    @direction = params[:direction]
 
     @dateToUse = DateTime.now
     @times = getStopTimes(@dateToUse)
@@ -20,29 +22,13 @@ class HomeController < ApplicationController
       # Note: direction_id of 1 is to LINDENWOLD and
       # direction_id of 0 is to PHILADELPHIA
       if (s.direction_id == 0)
-        @toPhiladelphia.push(s)
+        @toPhiladelphia.push({ :time => s, :trip => getTripDetails(params[:station], s.trip_id) })
       elsif (s.direction_id == 1)
-        @toLindenwold.push(s)
+        @toLindenwold.push({ :time => s, :trip => getTripDetails(params[:station], s.trip_id) })
       end
     end
   end
 
-  # Get the details of a specific trip, based around a specific stop
-  def trip_details
-    @thisStation =
-      Gtfs_stops.find_by_slug(params[:station])
-
-    @tripStopTimes =
-      Gtfs_stop_times
-        .select('gtfs_stop_times.*, gtfs_stops.stop_name')
-        .joins("inner join gtfs_stops on gtfs_stop_times.stop_id = gtfs_stops.stop_id")
-        .where('gtfs_stop_times.trip_id = ?', params[:trip])
-        .order('departure_time asc')
-
-    @timeAtThisStop =
-      @tripStopTimes.where('gtfs_stop_times.stop_id = ?', @thisStation.stop_id).first.departure_time
-  end
-  
   private
 
   def getStopTimes(dateTime)
@@ -87,6 +73,19 @@ class HomeController < ApplicationController
       .where('stop_id = ? and departure_time > ?', s.id, dateTime.strftime('%H:%M:%S')).order('departure_time')
       .joins('LEFT OUTER JOIN gtfs_trips ON gtfs_stop_times.trip_id = gtfs_trips.trip_id').where('gtfs_trips.service_id = ?', todaysServiceId)
   end
+
+  # Get the details of a specific trip, based around a specific stop
+  def getTripDetails(station_slug, trip_id)
+    @thisStation =
+      Gtfs_stops.find_by_slug(station_slug)
+
+    Gtfs_stop_times
+      .select('gtfs_stop_times.*, gtfs_stops.stop_name')
+      .joins("inner join gtfs_stops on gtfs_stop_times.stop_id = gtfs_stops.stop_id")
+      .where('gtfs_stop_times.trip_id = ?', trip_id)
+      .order('departure_time asc')
+  end
+  
 end
 
 class String

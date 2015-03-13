@@ -135,12 +135,16 @@ div.time-listing {
     }
   }
 
+  .trip-details {
+    font-size: 1em;
+    text-align: left;
+  }
+
   ul.upcoming-trains {
     padding: 0;
     margin: 0;
 
     li {
-      width: 4.5em;
       vertical-align: top;
 
       a {
