@@ -26,7 +26,20 @@
       <div class="trip-details">
         <% t[:trip].each do |stop| %>
           <% if stop.departure_time > t[:time].departure_time %>
-            <br /><%= "#{stop.stop_name}: #{Time.parse(stop.departure_time).strftime('%l:%M%p')}" %>
+            <%
+              if (stop.departure_time.slice(0, 2) == "24")
+                tomorrow = true
+                mt = "00:#{stop.departure_time.slice(3, 5)}"
+              else 
+                mt = stop.departure_time
+              end
+            %>
+            <br /><%= "#{stop.stop_name}: " %>
+            <% if tomorrow == true %>
+              <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{mt}").strftime('%l:%M%p') %> 
+            <% else %>
+              <%= Time.parse(mt).strftime('%l:%M%p') %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
