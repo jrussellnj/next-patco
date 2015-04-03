@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     @toPhiladelphia = []
     @toLindenwold = []
 
-    @dateToUse = DateTime.now
+    @dateToUse = Time.zone.now
     @times = getStopTimes(@dateToUse)
 
     @times.each do |s| 
@@ -19,6 +19,21 @@ class HomeController < ApplicationController
         @toPhiladelphia.push(s)
       elsif (s.direction_id == 1)
         @toLindenwold.push(s)
+      end
+    end
+
+    # If either direction has fewer than three times, go to the next day
+    if @toPhiladelphia.count < 3 or @toLindenwold.count < 3
+      @times = getStopTimes((@dateToUse + 1.day).beginning_of_day)
+
+      @times.each do |s| 
+        # Note: direction_id of 1 is to LINDENWOLD and
+        # direction_id of 0 is to PHILADELPHIA
+        if (s.direction_id == 0)
+          @toPhiladelphia.push(s)
+        elsif (s.direction_id == 1)
+          @toLindenwold.push(s)
+        end
       end
     end
   end

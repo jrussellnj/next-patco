@@ -21,7 +21,16 @@
     <% end %>
   <!--</a>-->
 
-  <br /><span class="departs-in"> Departs in <%= ((Time.parse(d) - Time.now) / 60).floor %> mins</span>
+  <% 
+    # If Rails thinks this is the in the past, it's really just after midnight the following day
+    if Time.parse(d).past?
+      parsedTime = Time.parse(d) + 1.day
+    else
+      parsedTime = Time.parse(d)
+    end
+  %>
+
+  <br /><span class="departs-in"> Departs in <%= ((parsedTime - @dateToUse) / 60).floor %> mins</span>
 </p>
 
 
@@ -33,14 +42,21 @@
         <%
           if (t.departure_time.slice(0, 2) == "24")
             tomorrow = true
-            d  = "00:#{t.departure_time.slice(3, 5)}"
+            d = "00:#{t.departure_time.slice(3, 5)}"
           else 
-            d= t.departure_time
+            d = t.departure_time
+          end
+
+          # If Rails thinks this is the in the past, it's really just after midnight the following day
+          if Time.parse(d).past?
+            parsedTime = Time.parse(d) + 1.day
+          else
+            parsedTime = Time.parse(d)
           end
         %>
 
         <!--<a href="/<%= @theStation.slug %>/trip/<%= t.trip_id %>">-->
-          <%= Time.parse(d).strftime('%l:%M%p') %>
+          <%= parsedTime.strftime('%l:%M%p') %>
         <!--</a>-->
 
         <br />
@@ -49,7 +65,7 @@
         <% if tomorrow == true %>
           <%= ((Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}") - Time.now) / 60).floor %> 
         <% else %>
-          <%= ((Time.parse(d) - Time.now) / 60).floor %> 
+          <%= ((parsedTime - @dateToUse) / 60).floor %> 
         <% end %>
         mins</span>
       </li>
