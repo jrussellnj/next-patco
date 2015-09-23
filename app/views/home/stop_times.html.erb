@@ -4,16 +4,24 @@
 
 <h2 class="station-name"><img src="/assets/pin.png" /><%= @theStation.stop_name %></h2>
 
-<div class="time-listing">
-  <h3>NEXT TO<br />PHILADELPHIA</h3>
-  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
-</div>
+<% if Time.now.strftime("%m/%d") == "09/26" or Time.now.strftime("%m/%d") == "09/27" %>
+  <div style="text-align: center; font-size: 1.25em; line-height: 1.25em; width: 50%; margin: 0 auto;">
+    There is no regular schedule for Saturday, September 26th or Sunday, September 27th. Please see <a href="http://www.ridepatco.org/papalvisit/">this page on RidePATCO.org</a> for details on PATCO service during the Pope's visit to Philadelphia.
+  </div>
+<% else %>
 
-<hr />
+  <div class="time-listing">
+    <h3>NEXT TO<br />PHILADELPHIA</h3>
+    <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
+  </div>
 
-<div class="time-listing">
-  <h3>NEXT TO<br />LINDENWOLD</h3>
-  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
-</div>
+  <hr />
+
+  <div class="time-listing">
+    <h3>NEXT TO<br />LINDENWOLD</h3>
+    <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
+  </div>
+
+<% end %>
 
 <br /> <p> <a href="/" class="back-link">Back to stations</a> </p>
