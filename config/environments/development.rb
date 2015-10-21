@@ -36,4 +36,6 @@ Site::Application.configure do
   config.assets.debug = true
 
   config.time_zone = 'Eastern Time (US & Canada)'
+
+  config.eager_load = false
 end
