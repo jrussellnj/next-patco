@@ -3,39 +3,31 @@ $(document).ready(function() {
 });
 
 function hookUpCarousel() {
-  $('.upcoming-trains.to-phila').carouFredSel({
-    auto: {
-      play: false
-    },
-    circular: false,
-    infinite: false,
-    items: 2,
-    next: {
-      button: $('.to-phila .next')
-    },
-    prev: {
-      button: $('.to-phila .previous')
-    },
-    scroll: {
-      items: 1
-    }
+  toPhila = $('.upcoming-trains.to-phila').owlCarousel({
+    items: 2
   });
 
-  $('.upcoming-trains.to-lindenwold').carouFredSel({
-    auto: {
-      play: false
-    },
-    circular: false,
-    infinite: false,
-    items: 2,
-    next: {
-      button: $('.to-lindenwold .next')
-    },
-    prev: {
-      button: $('.to-lindenwold .previous')
-    },
-    scroll: {
-      items: 1
-    }
+  $('.navigation.to-phila .previous').click(function(e) {
+    e.preventDefault();
+    toPhila.trigger('prev');
+  });
+
+  $('.navigation.to-phila .next').click(function(e) {
+    e.preventDefault();
+    toPhila.trigger('next');
+  });
+
+  toLindenwold = $('.upcoming-trains.to-lindenwold').owlCarousel({
+    items: 2
+  });
+
+  $('.navigation.to-lindenwold .previous').click(function(e) {
+    e.preventDefault();
+    toLindenwold.trigger('prev');
+  });
+
+  $('.navigation.to-lindenwold .next').click(function(e) {
+    e.preventDefault();
+    toLindenwold.trigger('next');
   });
 }

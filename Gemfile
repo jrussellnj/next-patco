@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~>4.0'
 gem 'protected_attributes', github: 'rails/protected_attributes'
-gem 'jquery-rails'
+gem 'jquery-rails', github: 'rails/jquery-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

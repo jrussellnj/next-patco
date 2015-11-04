@@ -11,4 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require_tree .
+//= require jquery_ujs
+//= require lib/owl.carousel.min
+//= require home
