@@ -12,12 +12,12 @@ class HomeController < ApplicationController
     @dateToUse = Time.zone.now
     @times = getStopTimes(@dateToUse)
 
-    @times.each do |s| 
-      # Note: direction_id of 1 is to LINDENWOLD and
-      # direction_id of 0 is to PHILADELPHIA
-      if (s.direction_id == 0)
+    @times.each do |s|
+      # Note: route_id of 1 is to LINDENWOLD and
+      # route_id of 2 is to PHILADELPHIA
+      if (s.route_id == "2")
         @toPhiladelphia.push(s)
-      elsif (s.direction_id == 1)
+      elsif (s.route_id == "1")
         @toLindenwold.push(s)
       end
     end
@@ -27,11 +27,11 @@ class HomeController < ApplicationController
       @times = getStopTimes((@dateToUse + 1.day).beginning_of_day)
 
       @times.each do |s| 
-        # Note: direction_id of 1 is to LINDENWOLD and
-        # direction_id of 0 is to PHILADELPHIA
-        if (s.direction_id == 0)
+        # Note: route_id of 1 is to LINDENWOLD and
+        # route_id of 2 is to PHILADELPHIA
+        if (s.route_id == "2")
           @toPhiladelphia.push(s)
-        elsif (s.direction_id == 1)
+        elsif (s.route_id == "1")
           @toLindenwold.push(s)
         end
       end
@@ -75,26 +75,26 @@ class HomeController < ApplicationController
     else 
       case dateTime.strftime('%A').downcase
         when "monday"
-          todaysServiceId = Gtfs_calendar.where("monday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("monday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "tuesday"
-          todaysServiceId = Gtfs_calendar.where("tuesday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("tuesday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "wednesday"
-          todaysServiceId = Gtfs_calendar.where("wednesday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("wednesday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "thursday"
-          todaysServiceId = Gtfs_calendar.where("thursday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("thursday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "friday"
-          todaysServiceId = Gtfs_calendar.where("friday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("friday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "saturday"
-          todaysServiceId = Gtfs_calendar.where("saturday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("saturday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
         when "sunday"
-          todaysServiceId = Gtfs_calendar.where("sunday = ?", 1).first.service_id
+          todaysServiceId = Gtfs_calendar.where("sunday = ? and ? between start_date and end_date", 1, dateTime.strftime('%Y%m%d')).first.service_id
       end
     end
 
     @debug_serviceId = todaysServiceId
 
     Gtfs_stop_times
-      .select('gtfs_stop_times.*, gtfs_trips.direction_id')
+      .select('gtfs_stop_times.*, gtfs_trips.direction_id, gtfs_trips.route_id')
       .where('stop_id = ? and departure_time > ?', s.id, dateTime.strftime('%H:%M:%S')).order('departure_time')
       .joins('LEFT OUTER JOIN gtfs_trips ON gtfs_stop_times.trip_id = gtfs_trips.trip_id').where('gtfs_trips.service_id = ?', todaysServiceId)
   end
