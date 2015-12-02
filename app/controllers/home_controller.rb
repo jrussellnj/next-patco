@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @stations = Gtfs_stops.all
+    @stations = Gtfs_stops.order('cast(stop_id as int)')
   end
 
   # Show the stop times, both inbound and outbound, for a provided stop 
