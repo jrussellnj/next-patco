@@ -151,3 +151,11 @@ div.footer {
     width: 42em;
   }
 }
+
+.desktop-only {
+  display: none;
+
+  @media all and (min-width: $desktop) {
+    display: inline;
+  }
+}
