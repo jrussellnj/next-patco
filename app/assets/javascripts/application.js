@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require lib/owl.carousel.min
 //= require home
+//= require react
+//= require react_ujs
+//= require components

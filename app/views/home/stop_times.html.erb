@@ -12,14 +12,16 @@
 
   <div class="time-listing">
     <h3>NEXT TO<br />PHILADELPHIA</h3>
-    <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
+    <div id="next-philadelphia"</div>
+    <div> <%#= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
   </div>
 
   <hr />
 
   <div class="time-listing">
     <h3>NEXT TO<br />LINDENWOLD</h3>
-    <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
+    <div id="next-lindenwold"></div>
+    <div> <%#= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
   </div>
 
 <% end %>
