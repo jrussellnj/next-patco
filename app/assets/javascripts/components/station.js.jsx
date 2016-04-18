@@ -16,7 +16,8 @@ var StationListing = React.createClass({
   showStation: function(station, e) {
     e.preventDefault();
     history.pushState(null, null, station.slug);
-    ReactDOM.render(<StationDetails station={station} />, document.getElementById('main'));
+    stationTimesUrl = "/api/times/" + station.slug;
+    ReactDOM.render(<StationDetails station={station} url={stationTimesUrl} />, document.getElementById('main'));
   },
 
   render: function() {
@@ -28,15 +29,53 @@ var StationListing = React.createClass({
 });
 
 var StationDetails = React.createClass({
+  getInitialState: function() {
+    return { times: { 'toPhiladelphia': [], 'toLindenwold': [] } }
+  },
+
+  componentDidMount: function() {
+    /* Get times to Philadelphia and Lindenwold */
+    $.ajax({
+      url: this.props.url,
+      type: 'GET',
+      cache: false,
+      success: function(data) {
+        this.setState({ times: data });
+        console.log("TIMES!", data);
+      }.bind(this)
+    });
+  },
 
   render: function() {
+    console.log("RENDERING!");
     return (
       <div>
         <h2 className="station-name"><img src="/assets/pin.png" /> {this.props.station.stop_name}</h2>
+        <Times direction="PHILADELPHIA" times={this.state.times.toPhiladelphia} />
+        <hr />
+        <Times direction="LINDENWOLD" times={this.state.times.toLindenwold} />
       </div>
     );
   }
 });
+
+/*
+
+        <div className="time-listing" id="upcoming-philadelphia">
+          <h3>NEXT TO<br />PHILADELPHIA</h3>
+          <div id="next-philadelphia"></div>
+          <div className="upcoming"></div>
+        </div>
+
+        <hr />
+
+        <div className="time-listing" id="upcoming-lindenwold">
+          <h3>NEXT TO<br />LINDENWOLD</h3>
+          <div id="next-lindenwold"></div>
+          <div className="upcoming"></div>
+        </div>
+      </div>
+*/
 
 
 /*

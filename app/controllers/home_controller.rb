@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   def index
     @stations = Gtfs_stops.order('cast(stop_id as int)')
   end
