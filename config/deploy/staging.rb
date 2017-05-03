@@ -7,9 +7,10 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server 'nextpat.co', user: 'nextpatco-deploy'
+server 'nextpat.co', user: 'nextpatco-deploy', port: 2222, roles: %w{app db web}
 set :branch, 'dev-addtransit'
-set :deploy_to, '~/nextpat.co/np-dev'
+set :tmp_dir, '/home/nextpatco-deploy/tmp'
+set :deploy_to, '/home/nextpatco-deploy/nextpat.co/np-dev'
 
 
 
