@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
+ruby "~> 2.2.0"
 gem 'rails', '~>4.0'
+
 gem 'protected_attributes', github: 'rails/protected_attributes'
 gem 'jquery-rails', github: 'rails/jquery-rails'
 
@@ -15,3 +17,8 @@ group :assets do
   gem 'uglifier'
 end
 
+# Use Capistrano for deployment
+group :development do
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.2'
+end
