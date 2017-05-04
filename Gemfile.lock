@@ -1,15 +1,15 @@
 GIT
-  remote: git://github.com/rails/jquery-rails.git
-  revision: 04fcfa29b859eef9479f89b6a799d00212902385
+  remote: https://github.com/rails/jquery-rails.git
+  revision: 6430f5f24985ffafa535269c5bca21aff63e27cf
   specs:
-    jquery-rails (4.0.5)
-      rails-dom-testing (~> 1.0)
+    jquery-rails (4.3.1)
+      rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
 
 GIT
-  remote: git://github.com/rails/protected_attributes.git
-  revision: 0421e825911b05a77c6521171b43070c9e6c4b35
+  remote: https://github.com/rails/protected_attributes.git
+  revision: 171b5820e1896119e5a41b2d71a8c4f6afa9849c
   specs:
     protected_attributes (1.1.3)
       activemodel (>= 4.0.1, < 5.0)
@@ -55,6 +55,11 @@ GEM
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
+    autoprefixer-rails (6.7.7.2)
+      execjs
+    bootstrap (4.0.0.alpha6)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     capistrano (3.8.1)
       airbrussh (>= 1.0.0)
@@ -143,6 +148,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap (~> 4.0.0.alpha6)
   capistrano (~> 3.6)
   capistrano-rails (~> 1.2)
   jquery-rails!

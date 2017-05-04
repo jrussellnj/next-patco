@@ -1,0 +1,32 @@
+/* General site styling */
+body {
+  font-family: 'SourceSansProRegular';
+}
+
+header {
+  margin: 1em 0 0;
+
+  .logo {
+    width: 100px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 1em 0 0;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: inherit;
+  }
+}
+
+footer {
+  font-size: 0.75em;
+  margin: 2em 0 0;
+}
