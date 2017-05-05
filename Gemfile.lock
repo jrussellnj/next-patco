@@ -69,9 +69,14 @@ GEM
     capistrano-bundler (1.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     erubis (2.7.0)
     execjs (2.6.0)
     globalid (0.3.6)
@@ -150,7 +155,9 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   capistrano (~> 3.6)
+  capistrano-passenger
   capistrano-rails (~> 1.2)
+  capistrano-rvm
   jquery-rails!
   protected_attributes!
   rails (~> 4.0)
