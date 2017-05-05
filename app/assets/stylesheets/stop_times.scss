@@ -1,16 +1,61 @@
+.pin {
+  width: 24px;
+}
+
 .station-name {
-  .pin {
-    width: 22px;
+  margin: 2em 0;
+
+  h2 {
+    font-family: 'SourceSansProItalic';
+    font-size: 1.5em;
+    font-weight: 700;
   }
 } 
 
-.upcoming-trains {
-  list-style: none;
-  padding: 0;
-  margin: 0.5em auto;
-  width: 200px;
-
-  li {
-    width: 3.5em;
+.next-to {
+  h3 {
+    font-size: 1.25em;
+    font-weight: 700;
   }
+  
+  .time {
+    color: #c0c0c0;
+    cursor: move;
+    font-size: 1.5em;
+    margin: 0 .5em 0 0;
+    display: inline-block;
+
+    &.next {
+      color: #000;
+      display: block;
+      margin: 0 0 .25em;
+      font-size: 3em;
+    }
+
+    .departs-in {
+      display: block;
+      font-size: .4em;
+    }
+  }
+
+  .upcoming-trains {
+    list-style: none;
+    padding: 0;
+    margin: 0.5em auto;
+    width: 200px;
+
+    li {
+      width: 3.5em;
+    }
+  }
+  
+  .navigation {
+    a:first-child {
+      margin: 0 1em 0 0;
+    }
+  }
+}
+
+.back-to-stations {
+  margin-top: 1em;
 }

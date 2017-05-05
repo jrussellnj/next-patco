@@ -1,30 +1,34 @@
-<% if Rails.env.development? %>
+<!--<% if Rails.env.development? %>
   <%= render 'debug' %>
-<% end %>
-
+<% end %>-->
 
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-3 text-center station-name">
-      <h2><img src="/assets/pin.png" class="pin" /><%= @theStation.stop_name %></h2>
+      <img src="/assets/pin.png" class="pin align-middle" /> 
+      <h2 class="d-inline align-middle"><%= @theStation.stop_name %></h2>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-6 text-center">
+<div class="container next-to">
+  <div class="row justify-content-center">
+    <div class="col-3 text-center">
       <h3>NEXT TO<br />PHILADELPHIA</h3>
       <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
     </div>
 
-    <div class="col-6 text-center">
+    <div class="col-3 text-center">
       <h3>NEXT TO<br />LINDENWOLD</h3>
       <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
     </div>
   </div>
 </div>
 
-<hr />
-
-<br /> <p> <a href="/" class="back-link">Back to stations</a> </p>
+<div class="container back-to-stations">
+  <div class="row">
+    <div class="col text-center">
+      <a href="/" class="back-link">Back to stations</a>
+    </div>
+  </div>
+</div>
