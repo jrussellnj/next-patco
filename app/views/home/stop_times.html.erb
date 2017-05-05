@@ -2,18 +2,29 @@
   <%= render 'debug' %>
 <% end %>
 
-<h2 class="station-name"><img src="/assets/pin.png" /><%= @theStation.stop_name %></h2>
 
-<div class="time-listing">
-  <h3>NEXT TO<br />PHILADELPHIA</h3>
-  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-3 text-center station-name">
+      <h2><img src="/assets/pin.png" class="pin" /><%= @theStation.stop_name %></h2>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 text-center">
+      <h3>NEXT TO<br />PHILADELPHIA</h3>
+      <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
+    </div>
+
+    <div class="col-6 text-center">
+      <h3>NEXT TO<br />LINDENWOLD</h3>
+      <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
+    </div>
+  </div>
 </div>
 
 <hr />
-
-<div class="time-listing">
-  <h3>NEXT TO<br />LINDENWOLD</h3>
-  <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
-</div>
 
 <br /> <p> <a href="/" class="back-link">Back to stations</a> </p>
