@@ -1,8 +1,10 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
+server 'nextpat.co', user: 'nextpatco-deploy', port: 2222, roles: %w{app db web}
 set :application, "next_patco"
 set :repo_url, "git@github.com:thegreengrass/next-patco.git"
+set :tmp_dir, '/home/nextpatco-deploy/tmp'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

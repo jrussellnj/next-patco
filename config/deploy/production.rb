@@ -7,6 +7,9 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+set :branch, 'master'
+set :deploy_to, '/home/nextpatco-deploy/nextpat.co/site'
+
 
 
 # role-based syntax
