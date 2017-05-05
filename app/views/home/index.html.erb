@@ -1,11 +1,11 @@
 <div class="container stops">
   <% @stations.each do |s| %>
-    <div class="row justify-content-center no-gutters stop">
+    <div class="row justify-content-center no-gutters mb-3 mb-md-2 stop">
       <div class="col-1 text-right">
         <img src="/assets/pin.png" class="pin" />
       </div>
 
-      <div class="col-2">
+      <div class="col-4 col-md-2">
         <a href="/<%= s.slug %>/"><%= s.stop_name %></a>
       </div>
     </div>
