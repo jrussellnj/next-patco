@@ -11,7 +11,7 @@ end
 
 source 'https://rubygems.org'
 
-ruby "~> 2.2.0"
+ruby "2.2.0"
 gem 'rails', '~>4.0'
 
 gem 'protected_attributes', github: 'rails/protected_attributes'
