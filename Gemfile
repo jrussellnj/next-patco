@@ -13,6 +13,7 @@ source 'https://rubygems.org'
 
 ruby "2.2.0"
 gem 'rails', '~>4.0'
+gem 'foreman'
 gem 'protected_attributes', github: 'rails/protected_attributes'
 gem 'jquery-rails', github: 'rails/jquery-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
