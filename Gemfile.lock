@@ -169,7 +169,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (~> 4.0.0.alpha6)
+  bootstrap (~> 4.0.0.beta2.1)
   capistrano (~> 3.6)
   capistrano-passenger
   capistrano-rails (~> 1.2)
