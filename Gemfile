@@ -14,6 +14,7 @@ source 'https://rubygems.org'
 ruby "2.2.0"
 gem 'rails', '~>4.0'
 gem 'foreman'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'protected_attributes', github: 'rails/protected_attributes'
 gem 'jquery-rails', github: 'rails/jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
