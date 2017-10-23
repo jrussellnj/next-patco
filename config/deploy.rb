@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.9.0"
+lock "3.10.0"
 
 server 'nextpat.co', user: 'nextpatco-deploy', port: 2222, roles: %w{app db web}
 set :application, "next_patco"
