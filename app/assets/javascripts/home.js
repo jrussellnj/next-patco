@@ -4,7 +4,8 @@ $(document).ready(function() {
 
 function hookUpCarousel() {
   toPhila = $('.upcoming-trains.to-phila').owlCarousel({
-    items: 2
+    items: 2,
+    startPosition: 1
   });
 
   $('.navigation.to-phila .previous').click(function(e) {

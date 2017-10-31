@@ -5,23 +5,15 @@
 <!-- Next train -->
 <p class="time next">
   <%
-    if (trains.first.departure_time.slice(0, 2) == "24")
+    if firstTrainTime.starts_with?('24:')
       tomorrow = true
-      d  = "00:#{trains.first.departure_time.slice(3, 5)}"
-    else 
-      d= trains.first.departure_time
+      d  = "00:#{firstTrainTime.slice(3, 5)}"
+    else
+      d= firstTrainTime
     end
   %>
 
-  <!--<a href="/<%= @theStation.slug %>/trip/<%= trains.first.trip_id %>">-->
-    <% if tomorrow == true %>
-      <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
-    <% else %>
-      <%= Time.parse(d).strftime('%l:%M%p') %>
-    <% end %>
-  <!--</a>-->
-
-  <% 
+  <%
     # If Rails thinks this is the in the past, it's really just after midnight the following day
     if Time.parse(d).past?
       parsedTime = Time.parse(d) + 1.day
@@ -30,21 +22,28 @@
     end
   %>
 
+  <% if tomorrow == true %>
+    <%= Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}").strftime('%l:%M%p') %> 
+  <% else %>
+    <%= Time.parse(d).strftime('%l:%M%p') %>
+  <% end %>
+
   <br /><span class="departs-in"> Departs in <%= ((parsedTime - @dateToUse) / 60).floor %> mins</span>
 </p>
 
 
 <!-- Upcoming Trains -->
 <ul class="upcoming-trains <%= upcomingClass %>">
-  <% trains.slice(1, 100).each do |t| %>
+  <% trains.each do |t| %>
     <% if !t.nil? %>
-      <li class="time">
+    <% puts "#{t.inspect}\n" %>
+      <li class="time <%= t[:stale] == true ? 'stale' : '' %>">
         <%
-          if (t.departure_time.slice(0, 2) == "24")
+          if (t[:departure_time].slice(0, 2) == "24")
             tomorrow = true
-            d = "00:#{t.departure_time.slice(3, 5)}"
+            d = "00:#{t[:departure_time].slice(3, 5)}"
           else 
-            d = t.departure_time
+            d = t[:departure_time]
           end
 
           # If Rails thinks this is the in the past, it's really just after midnight the following day
@@ -55,13 +54,9 @@
           end
         %>
 
-        <!--<a href="/<%= @theStation.slug %>/trip/<%= t.trip_id %>">-->
-          <%= parsedTime.strftime('%l:%M%p') %>
-        <!--</a>-->
+        <%= parsedTime.strftime('%l:%M%p') %> <br />
 
-        <br />
-
-        <span class="departs-in"> Departs in 
+        <span class="departs-in"> Departs in
         <% if tomorrow == true %>
           <%= ((Time.parse("#{DateTime.now.tomorrow.to_date.strftime('%Y-%m-%d')} #{d}") - Time.now) / 60).floor %> 
         <% else %>

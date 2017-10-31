@@ -7,18 +7,32 @@ class HomeController < ApplicationController
   # Show the stop times, both inbound and outbound, for a provided stop 
   def stop_times
     @toPhiladelphia = []
+    @toPhiladelphiaStale = []
     @toLindenwold = []
 
     @dateToUse = Time.zone.now
-    @times = getStopTimes(@dateToUse)
+    @times = getStopTimes(@dateToUse - 30.minutes)
+
+    # TODO:
+    # - Collect stale times in one array, collect future times in another.
+    # - Create this array: [ (last member of stale times), (all future times here) ]
+    # - Set the first member of the future times array to be the "next train" value, then delete it from the "all future times" array
+    # - Give these two to the front end
 
     @times.each do |s|
       # Note: route_id of 1 is to LINDENWOLD and
       # route_id of 2 is to PHILADELPHIA
+      if s.departure_time.starts_with?('24:')
+        s.departure_time.gsub!(/^24/, '00')
+        departureAsDateTime = Time.strptime(s.departure_time + ' Eastern Time (US & Canada)', '%H:%M:%S %Z') + 1.day
+      else
+        departureAsDateTime = Time.strptime(s.departure_time + ' Eastern Time (US & Canada)', '%H:%M:%S %Z')
+      end
+
       if (s.route_id == "2")
-        @toPhiladelphia.push(s)
+        @toPhiladelphia.push({ :departure_time => s.departure_time, :stale => departureAsDateTime.past? ? true : false })
       elsif (s.route_id == "1")
-        @toLindenwold.push(s)
+        @toLindenwold.push({ :departure_time => s.departure_time, :stale => departureAsDateTime.past? ? true : false })
       end
     end
 
@@ -26,16 +40,22 @@ class HomeController < ApplicationController
     if @toPhiladelphia.count < 3 or @toLindenwold.count < 3
       @times = getStopTimes((@dateToUse + 1.day).beginning_of_day)
 
-      @times.each do |s| 
+      @times.each do |s|
         # Note: route_id of 1 is to LINDENWOLD and
         # route_id of 2 is to PHILADELPHIA
         if (s.route_id == "2")
-          @toPhiladelphia.push(s)
+          @toPhiladelphia.push({ :departure_time => s.departure_time, :stale => departureAsDateTime.past? ? true : false })
         elsif (s.route_id == "1")
-          @toLindenwold.push(s)
+          @toLindenwold.push({ :departure_time => s.departure_time, :stale => departureAsDateTime.past? ? true : false })
         end
       end
     end
+
+    # Get next train times to showcase and remove them from the overall arrays
+    @nextPhiladelphiaTrain = @toPhiladelphia.first[:departure_time]
+    # @toPhiladelphia = @toPhiladelphia[1..100]
+
+    @nextLindenwoldTrain = @toLindenwold.first[:departure_time]
   end
 
   # Get the details of a specific trip, based around a specific stop

@@ -15,14 +15,14 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-3 text-center">
       <h3>NEXT TO<br />PHILADELPHIA</h3>
-      <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
+      <div> <%= render :partial => 'next_upcoming', :locals => { :firstTrainTime => @nextPhiladelphiaTrain, :trains => @toPhiladelphia, :upcomingClass => 'to-phila' } %> </div>
     </div>
 
     <hr class="d-md-none" />
 
     <div class="col-12 col-md-3 text-center">
       <h3>NEXT TO<br />LINDENWOLD</h3>
-      <div> <%= render :partial => 'next_upcoming', :locals => { :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
+      <div> <%= render :partial => 'next_upcoming', :locals => { :firstTrainTime => @nextLindenwoldTrain, :trains => @toLindenwold, :upcomingClass => 'to-lindenwold' } %> </div>
     </div>
   </div>
 </div>
