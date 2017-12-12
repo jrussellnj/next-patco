@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
 
   # Show the stop times, both inbound and outbound, for a provided stop 
-  def stop_times
+  def stop_times(forApi = false)
     @toPhiladelphia = []
     @toLindenwold = []
 
@@ -37,8 +37,8 @@ class HomeController < ApplicationController
       end
     end
 
-    if params[:json] == "true"
-      render :json => { :to_phila => @toPhiladelphia.first, :to_lindenwold => @toLindenwold.first }
+    if forApi == true
+      return { :to_phila => @toPhiladelphia.first, :to_lindenwold => @toLindenwold.first }
     end
   end
 
@@ -57,7 +57,20 @@ class HomeController < ApplicationController
     @timeAtThisStop =
       @tripStopTimes.where('gtfs_stop_times.stop_id = ?', @thisStation.stop_id).first.departure_time
   end
-  
+
+  # Used for the Alexa API endpoint
+  def api
+    nextTrains = stop_times(true)
+
+    if params[:direction] == "westbound"
+      trainJson = nextTrains[:to_phila]
+    else
+      trainJson = nextTrains[:to_lindenwold]
+    end
+
+    render :json => trainJson
+  end
+
   private
 
   def getStopTimes(dateTime)
@@ -66,6 +79,8 @@ class HomeController < ApplicationController
     else
       s = Gtfs_stops.find_by_slug(params[:station])
     end
+
+    puts params.inspect
 
     # Get the name of the station with the provided id
     @theStation = s
