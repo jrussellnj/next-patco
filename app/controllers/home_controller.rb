@@ -36,6 +36,10 @@ class HomeController < ApplicationController
         end
       end
     end
+
+    if params[:json] == "true"
+      render :json => { :to_phila => @toPhiladelphia.first, :to_lindenwold => @toLindenwold.first }
+    end
   end
 
   # Get the details of a specific trip, based around a specific stop
