@@ -80,8 +80,6 @@ class HomeController < ApplicationController
       s = Gtfs_stops.find_by_slug(params[:station])
     end
 
-    puts params.inspect
-
     # Get the name of the station with the provided id
     @theStation = s
 
