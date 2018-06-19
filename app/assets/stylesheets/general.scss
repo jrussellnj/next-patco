@@ -15,6 +15,16 @@ header {
     font-weight: 700;
     margin: 1em 0 0;
   }
+
+  .special-message {
+    h3 {
+      color: #f00;
+    }
+
+    p {
+      line-height: 1.35;
+    }
+  }
 }
 
 a {
@@ -23,6 +33,10 @@ a {
 
   &:hover {
     text-decoration: inherit;
+  }
+
+  &.underlined {
+    text-decoration: underline;
   }
 }
 
