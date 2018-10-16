@@ -1,11 +1,11 @@
 # config valid only for current version of Capistrano
-lock "3.10.0"
+lock "3.11.0"
 
 server 'nextpat.co', user: 'nextpatco-deploy', port: 2222, roles: %w{app db web}
 set :application, "next_patco"
 set :repo_url, "git@github.com:thegreengrass/next-patco.git"
 set :tmp_dir, '/home/nextpatco-deploy/tmp'
-set :rvm_ruby_version, '2.2.0'
+set :rvm_ruby_version, '2.4.0'
 set :passenger_restart_with_touch, true
 
 # Default branch is :master
