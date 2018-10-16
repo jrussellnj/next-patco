@@ -11,7 +11,7 @@ end
 
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby "2.4.0"
 gem 'rails', '~>4.0'
 gem 'foreman'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
