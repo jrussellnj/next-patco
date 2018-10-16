@@ -6,6 +6,7 @@ set :application, "next_patco"
 set :repo_url, "git@github.com:thegreengrass/next-patco.git"
 set :tmp_dir, '/home/nextpatco-deploy/tmp'
 set :rvm_ruby_version, '2.2.0'
+set :passenger_restart_with_touch, true
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
