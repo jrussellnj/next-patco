@@ -11,7 +11,7 @@ end
 
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby "2.4.0"
 gem 'rails', '~>4.0'
 gem 'foreman'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'sqlite3'
+gem 'mini_racer'
 
 # Use Capistrano for deployment
 group :development do
