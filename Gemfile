@@ -21,7 +21,6 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'sqlite3'
-gem 'mini_racer'
 
 # Use Capistrano for deployment
 group :development do
