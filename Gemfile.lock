@@ -175,7 +175,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (>= 4.1.2)
+  bootstrap (>= 4.3.1)
   capistrano (~> 3.6)
   capistrano-passenger
   capistrano-rails (~> 1.2)

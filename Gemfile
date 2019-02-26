@@ -17,7 +17,7 @@ gem 'foreman'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'protected_attributes', github: 'rails/protected_attributes'
 gem 'jquery-rails', github: 'rails/jquery-rails'
-gem "bootstrap", ">= 4.1.2"
+gem "bootstrap", ">= 4.3.1"
 gem 'sass-rails'
 gem 'uglifier'
 gem "sqlite3", "~> 1.3.6"
