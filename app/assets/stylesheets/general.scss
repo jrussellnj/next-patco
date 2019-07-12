@@ -1,6 +1,6 @@
 /* General site styling */
 body {
-  font-family: 'SourceSansProRegular';
+  @include font();
 }
 
 header {
@@ -23,6 +23,7 @@ header {
     }
 
     p {
+      @include font(600);
       line-height: 1.35;
     }
   }
