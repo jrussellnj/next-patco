@@ -1,23 +1,5 @@
-/* Custom fonts */
-@font-face {
-    font-family: 'SourceSansProRegular';
-    src: asset-url('SourceSansPro-Regular-webfont.eot');
-    src: asset-url('SourceSansPro-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         asset-url('SourceSansPro-Regular-webfont.woff') format('woff'),
-         asset-url('SourceSansPro-Regular-webfont.ttf') format('truetype'),
-         asset-url('SourceSansPro-Regular-webfont.svg#SourceSansProRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+@mixin font($weight: 400, $style: normal)  {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: $style;
+  font-weight: $weight
 }
-
-@font-face {
-    font-family: 'SourceSansProItalic';
-    src: asset-url('SourceSansPro-It-webfont.eot');
-    src: asset-url('SourceSansPro-It-webfont.eot?#iefix') format('embedded-opentype'),
-         asset-url('SourceSansPro-It-webfont.woff') format('woff'),
-         asset-url('SourceSansPro-It-webfont.ttf') format('truetype'),
-         asset-url('SourceSansPro-It-webfont.svg#SourceSansProItalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
