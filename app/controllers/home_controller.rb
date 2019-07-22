@@ -109,7 +109,7 @@ class HomeController < ApplicationController
     end
 
     @debug_serviceId = todaysServiceId
-    @debug_stopId = s.id
+    @debug_stopId = s.stop_id
 
     Gtfs_stop_times
       .select('gtfs_stop_times.*, gtfs_trips.direction_id, gtfs_trips.route_id')
