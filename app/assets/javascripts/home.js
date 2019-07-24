@@ -1,5 +1,6 @@
 $(document).ready(function() {
   hookUpCarousel();
+  stopTimePageReload();
 });
 
 function hookUpCarousel() {
@@ -30,4 +31,12 @@ function hookUpCarousel() {
     e.preventDefault();
     toLindenwold.trigger('next');
   });
+}
+
+function stopTimePageReload() {
+  if ($('body.action-stop_times').length > 0) {
+    setTimeout(function() {
+      window.location.reload();
+    }, 30000);
+  }
 }
