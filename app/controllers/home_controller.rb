@@ -49,13 +49,13 @@ class HomeController < ApplicationController
 
     @tripStopTimes =
       Gtfs_stop_times
-        .select('gtfs_stop_times.*, gtfs_stops.stop_name')
-        .joins("inner join gtfs_stops on gtfs_stop_times.stop_id = gtfs_stops.stop_id")
-        .where('gtfs_stop_times.trip_id = ?', params[:trip])
+        .select('stop_times.*, stops.stop_name')
+        .joins("inner join stops on stop_times.stop_id = stops.stop_id")
+        .where('stop_times.trip_id = ?', params[:trip])
         .order('departure_time asc')
 
     @timeAtThisStop =
-      @tripStopTimes.where('gtfs_stop_times.stop_id = ?', @thisStation.stop_id).first.departure_time
+      @tripStopTimes.where('stop_times.stop_id = ?', @thisStation.stop_id).first.departure_time
   end
 
   # Used for the Alexa API endpoint
@@ -112,9 +112,9 @@ class HomeController < ApplicationController
     @debug_stopId = s.id
 
     Gtfs_stop_times
-      .select('gtfs_stop_times.*, gtfs_trips.direction_id, gtfs_trips.route_id')
+      .select('stop_times.*, trips.direction_id, trips.route_id')
       .where('stop_id = ? and departure_time > ?', s.id, dateTime.strftime('%H:%M:%S')).order('departure_time')
-      .joins('LEFT OUTER JOIN gtfs_trips ON gtfs_stop_times.trip_id = gtfs_trips.trip_id').where('gtfs_trips.service_id = ?', todaysServiceId)
+      .joins('LEFT OUTER JOIN trips ON stop_times.trip_id = trips.trip_id').where('trips.service_id = ?', todaysServiceId)
   end
 end
 
